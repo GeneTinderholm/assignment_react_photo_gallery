@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const FilterDropdown = () => {
+const FilterDropdown = ({name, onChange}) => {
   const filterOptions = [
     "Default",
     "Lark",
@@ -12,7 +12,7 @@ const FilterDropdown = () => {
   ];
 
   return (
-    <select className="selectpicker">
+    <select className="selectpicker" name={name} onChange={onChange}>
       {filterOptions.map(filter => <option value={filter}>{filter}</option>)}
     </select>
   );

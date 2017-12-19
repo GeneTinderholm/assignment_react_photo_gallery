@@ -7,6 +7,20 @@ import PhotoGalleryMap from "./PhotoGalleryMap";
 import FilterDropdown from "./FilterDropdown";
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      filter: 'default'
+    }
+    this.onInputChange = this.onInputChange.bind(this);
+  }
+
+onInputChange(e) {
+    this.setState({
+      [e.target.name]: [e.target.value]
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -17,8 +31,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <FilterDropdown />
-        <PhotoGalleryMap json={instagramResponse} />
+        <FilterDropdown name="filter" onChange={this.onInputChange} />
+        <PhotoGalleryMap json={instagramResponse} filter={this.state.filter} />
       </div>
     );
   }
