@@ -14,10 +14,12 @@ class App extends Component {
     this.state = {
       filter: "default",
       likes: 0,
-      search: ""
+      search: "",
+      currentPage: 1
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
+    this.onPageChange = this.onPageChange.bind(this);
   }
 
   onButtonClick(e) {
@@ -29,6 +31,12 @@ class App extends Component {
   onInputChange(e) {
     this.setState({
       [e.target.name]: [e.target.value]
+    });
+  }
+
+  onPageChange(e) {
+    this.setState({
+      [e.target.name]: Number(e.target.value)
     });
   }
 
@@ -54,6 +62,8 @@ class App extends Component {
           filter={this.state.filter}
           sort={this.state.likes}
           search={this.state.search}
+          currentPage={this.state.currentPage}
+          onClick={this.onPageChange}
         />
       </div>
     );
