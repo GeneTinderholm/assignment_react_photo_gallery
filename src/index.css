@@ -6,6 +6,37 @@ body {
 
 .sizing {
   height: 300px;
+  max-height:300px;
   width: 300px;
+  max-width:300px;
 }
 
+@media only screen and (min-width : 768px) {
+    .is-table-row {
+        display: table;
+        max-width: 100%;
+    }
+    .is-table-row [class*="col-"] {
+        float: none;
+        display: table-cell;
+        vertical-align: top;
+    }
+}
+
+.row.match-my-cols {
+    overflow: hidden; 
+}
+
+.row.match-my-cols [class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+.row.is-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.row.is-flex > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}

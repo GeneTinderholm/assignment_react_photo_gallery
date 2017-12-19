@@ -82,7 +82,7 @@ const PhotoGalleryMap = ({
 
   return (
     <div className="container">
-      <div className="row">{displayArray.map(x => <FilterPass x={x} />)}</div>
+      <div className="row is-flex">{displayArray.map(x => <FilterPass x={x} />)}</div>
       {groupedArray.map(x => x)}
     </div>
   );
