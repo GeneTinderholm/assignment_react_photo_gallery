@@ -10,6 +10,7 @@ const PhotoGallery = ({ photos }) => {
       <a href={photos.link}>
         <img src={photos.images.standard_resolution.url} className="sizing" />
       </a>
+      <p> {photos.caption ? photos.caption.text : ""} </p>
       <p>
         by{" "}
         <a href={`http://instagram.com/${photos.user.username}`}>

@@ -5,20 +5,31 @@ import PhotoGallery from "./PhotoGallery";
 import instagramResponse from "./photos";
 import PhotoGalleryMap from "./PhotoGalleryMap";
 import FilterDropdown from "./FilterDropdown";
+import SortButton from "./SortButton";
+import SearchField from "./SearchField";
 
 class App extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      filter: 'default'
-    }
+      filter: "default",
+      likes: 0,
+      search: ""
+    };
     this.onInputChange = this.onInputChange.bind(this);
+    this.onButtonClick = this.onButtonClick.bind(this);
   }
 
-onInputChange(e) {
+  onButtonClick(e) {
+    this.setState({
+      [e.target.name]: !this.state.likes
+    });
+  }
+
+  onInputChange(e) {
     this.setState({
       [e.target.name]: [e.target.value]
-    })
+    });
   }
 
   render() {
@@ -32,7 +43,18 @@ onInputChange(e) {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <FilterDropdown name="filter" onChange={this.onInputChange} />
-        <PhotoGalleryMap json={instagramResponse} filter={this.state.filter} />
+        <SortButton onClick={this.onButtonClick} />
+        <SearchField
+          name="search"
+          value={this.state.search}
+          onChange={this.onInputChange}
+        />
+        <PhotoGalleryMap
+          json={instagramResponse}
+          filter={this.state.filter}
+          sort={this.state.likes}
+          search={this.state.search}
+        />
       </div>
     );
   }
